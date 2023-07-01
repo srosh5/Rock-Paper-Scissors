@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // this function will return the random string of 'rock' 'paper' or 'scissors'
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomNumber = Math.floor(Math.random() * 3);
+            return choices[randomNumber];
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            console.log(`Computer picks ${computerSelection}`);
+            if (playerSelection == 'rock') {
+                if (computerSelection == 'rock') {
+                    console.log('Tie');
+                    return 'Tie';
+                } else if (computerSelection == 'paper') {
+                    console.log('Loss');
+                    return 'Loss';
+                } else {
+                    console.log('Win');
+                    return 'Win';
+                }
+            } else if (playerSelection == 'paper') {
+                if (computerSelection == 'rock') {
+                    console.log('Win');
+                    return 'Win';
+                } else if (computerSelection == 'paper') {
+                    console.log('Tie');
+                    return 'Tie';
+                } else {
+                    console.log('Loss');
+                    return 'Loss';
+                }
+            } else if (playerSelection == 'scissors') {
+                if (computerSelection == 'rock') {
+                    console.log('Loss');
+                    return 'Loss';
+                } else if (computerSelection == 'paper') {
+                    console.log('Win');
+                    return 'Win';
+                } else {
+                    console.log('Tie');
+                    return 'Tie';
+                }
+            } else {
+                console.log('Invalid answer, try again')
+            }
+        }
+
+        function game() {
+            let playerWinCount = 0;
+            let computerWinCount = 0;
+            while (playerWinCount < 5 && computerWinCount < 5) {
+                const computerSelection = getComputerChoice();
+                let playerSelection = prompt("Rock, Paper or Scissors?");
+                playerSelection = playerSelection.toLowerCase();
+                let round = playRound(playerSelection, computerSelection);
+                if (round == 'Win') {
+                    playerWinCount = playerWinCount + 1;
+                    console.log(`Score: Player: ${playerWinCount} | Computer: ${computerWinCount}`);
+                } else if (round == 'Loss') {
+                    computerWinCount = computerWinCount + 1;
+                    console.log(`Score: Player: ${playerWinCount} | Computer: ${computerWinCount}`);
+                } else if (round == 'Tie') {
+                    console.log(`Score: Player: ${playerWinCount} | Computer: ${computerWinCount}`);
+                } else { }
+            }
+            if (computerWinCount == 5) {
+                console.log("You lost :(");
+            } else {
+                console.log('You won!!!');
+            }
+        }
+
+        console.log(game());
+    </script>
+
+</body>
+
+</html>
